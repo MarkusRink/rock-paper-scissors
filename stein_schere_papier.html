@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head> 
+    <title>Stein, Papier, Schere</title>
+    <meta charset="UTF-8">
+
+  </head>
+  <body>
+    <script type="application/javascript" src="game_logic.js"></script>
+    <h1>Wilkommen zu <b>Stein, Schere, Papier!</b></h1>
+
+    <p>
+      <i
+        >Kannst du den Computer in Stein, Schere, Papier schlagen? <br/> Starte eine
+        neue Runde, indem du auf eines der Symbole klickst.</i
+      >
+    </p>
+
+    
+    <button onclick="runGame('stone')">🪨 Stein</button>
+    <button onclick="runGame('paper')">📄 Papier</button>
+    <button onclick="runGame('scissors')">✂️ Schere</button>
+    <button id="btnWell" onclick="runGame('well')">⛲ Brunnen</button>
+    
+    <p id="displayGameState"></p>
+    <!-- Hier könnte ein Textfeld sein, mit der Auswahl des Computers-->
+    <p id="displayComputerSymbol">Computer wählt</p>
+
+    <fieldset>
+      <label><i>Hier kannst du die Spielvariante wechseln:</i></label><br/>
+      <input type="radio" id="gameVariant1" value="SSP" name="gameVariant" checked />
+      <label for="">Stein, Schere, Papier</label><br/>
+      <input type="radio" id="gameVariant2" value="SSPB" name="gameVariant" />
+      <label for="">Stein, Schere, Papier, Brunnen</label>
+    </fieldset>
+  </body>
+</html>
