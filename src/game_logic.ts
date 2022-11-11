@@ -49,23 +49,50 @@ function runGame(symbol: GameSymbol, computerSymbol: GameSymbol = null): void {
     if (computerSymbol === null){
       computerSymbol = getRandomInt(0, numberOfSymbols);
     }
-    if (computerSymbol === Number(symbol)){
-      // TODO unentschieden
-      displayGameState.innerText = "unentschieden";
-    } else {
-      var playerWins = leftWins.includes(
-        String(symbol) + String(computerSymbol)
-        );
-      if (playerWins) {
-        // Du hast gewonnen!
-        displayGameState.innerText = "Du hast gewonnen!";
-      } else {
-        // Der Computer gewinnt.
-        displayGameState.innerText = "Der Computer gewinnt.";
-      }
-    }
-    // TODO Set computer Symbol
-    displayComputerSymbol.innerText = "Computer wählt: " + String(GameSymbol[computerSymbol]);    
+    displayGameOutcome(calculateWinner(symbol, computerSymbol), symbol, computerSymbol);
+  }
+}
+
+enum GameWinner {
+  Player,
+  Computer,
+  Nobody
+}
+
+function displayGameOutcome(winner:GameWinner, symbol:GameSymbol, computerSymbol:GameSymbol):void {
+  switch (winner){
+    case GameWinner.Nobody:
+      displayGameState.innerText = 
+      " unentschieden mit "
+      + String(GameSymbol[computerSymbol]);
+      displayGameState.style.backgroundColor = '#C1CDE6'; // light blue
+      break
+    case GameWinner.Player:
+      displayGameState.innerText = 
+      String(GameSymbol[symbol]) 
+      + " gewinnt gegen "
+      + String(GameSymbol[computerSymbol]);   
+      displayGameState.style.backgroundColor = '#4CE663'; // green
+      break
+    case GameWinner.Computer:
+      displayGameState.innerText = 
+      String(GameSymbol[symbol]) 
+      + " verliert gegen "
+      + String(GameSymbol[computerSymbol]);   
+      displayGameState.style.backgroundColor = '#E64C4C'; // red
+      break
+  }
+}
+
+function calculateWinner(symbol: GameSymbol, computerSymbol: GameSymbol): GameWinner {
+  if (symbol === computerSymbol){
+    return GameWinner.Nobody
+  }
+  else if (leftWins.includes(String(symbol) + String(computerSymbol))){
+    return GameWinner.Player
+  }
+  else {
+    return GameWinner.Computer
   }
 }
 
