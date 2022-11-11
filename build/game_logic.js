@@ -29,18 +29,32 @@ function runGame(symbol, computerSymbol = null) {
             computerSymbol = getRandomInt(0, numberOfSymbols);
         }
         if (computerSymbol === Number(symbol)) {
-            displayGameState.innerText = "unentschieden";
+            displayGameState.innerText =
+                " unentschieden mit "
+                    + String(GameSymbol[computerSymbol]);
+            displayGameState.style.backgroundColor = '#C1CDE6';
         }
         else {
             var playerWins = leftWins.includes(String(symbol) + String(computerSymbol));
             if (playerWins) {
-                displayGameState.innerText = "Du hast gewonnen!";
+                displayGameState.innerText =
+                    String(GameSymbol[symbol])
+                        + " gewinnt gegen "
+                        + String(GameSymbol[computerSymbol]);
+                displayGameState.style.backgroundColor = '#4CE663';
             }
             else {
-                displayGameState.innerText = "Der Computer gewinnt.";
+                displayGameState.innerText =
+                    String(GameSymbol[symbol])
+                        + " verliert gegen "
+                        + String(GameSymbol[computerSymbol]);
+                displayGameState.style.backgroundColor = '#E64C4C';
             }
         }
-        displayComputerSymbol.innerText = "Computer wählt: " + String(GameSymbol[computerSymbol]);
+        displayComputerSymbol.innerText =
+            String(GameSymbol[symbol])
+                + " VS "
+                + String(GameSymbol[computerSymbol]);
     }
 }
 function getRandomInt(min, max) {

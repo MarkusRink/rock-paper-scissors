@@ -3,34 +3,40 @@
   <head> 
     <title>Stein, Papier, Schere</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css">
     <script type="application/javascript" src="game_logic.js"></script>
   </head>
   <body>
     <h1>Wilkommen zu <b>Stein, Schere, Papier!</b></h1>
-    
-    <p>
-      <i
+    <div class="gameArea">
+
+      <p>
+        <i
         >Kannst du den Computer in Stein, Schere, Papier schlagen? <br/> Starte eine
         neue Runde, indem du auf eines der Symbole klickst.</i
-      >
-    </p>
+        >
+      </p>
 
-    
-    <button onclick="runGame(GameSymbol.Stein)">🪨 Stein</button>
-    <button onclick="runGame(GameSymbol.Papier)">📄 Papier</button>
-    <button onclick="runGame(GameSymbol.Schere)">✂️ Schere</button>
-    <button id="btnBrunnen" onclick="runGame(GameSymbol.Brunnen)" style="display: none;">⛲ Brunnen</button>
-    
-    <p id="displayGameState"></p>
-    <!-- Hier könnte ein Textfeld sein, mit der Auswahl des Computers-->
-    <p id="displayComputerSymbol">Computer wählt</p>
-    <form>
-      <label><i>Hier kannst du die Spielvariante wechseln:</i></label><br/>
-      <input type="radio" id="gameVariant1" name="gameVariant" checked onchange="toggleGameVariant(GameVariant.SSP)"/>
-      <label for="gameVariant1">Stein, Schere, Papier</label><br/>
-      <input type="radio" id="gameVariant2" name="gameVariant" onchange="toggleGameVariant(GameVariant.SSPB)"/>
-      <label for="gameVariant2">Stein, Schere, Papier, Brunnen</label>
-    </form>
+      <!-- Hier könnte ein Textfeld sein, mit der Auswahl des Computers-->
+      
+      <p id="displayComputerSymbol" style="display: none;"></p>
+      <p id="displayGameState"></p>
+      <div class="buttonBox">
+        <button onclick="runGame(GameSymbol.Stein)">🪨 Stein</button>
+        <button onclick="runGame(GameSymbol.Papier)">📄 Papier</button>
+        <button id="btnBrunnen" onclick="runGame(GameSymbol.Brunnen)" style="display: none;">⛲ Brunnen</button>
+        <button onclick="runGame(GameSymbol.Schere)">✂️ Schere</button>
+      </div>
+        
+      <span class="divider"></span>
+      <form>
+        <label><i>Hier kannst du die Spielvariante wechseln:</i></label><br/>
+        <input type="radio" id="gameVariant1" name="gameVariant" checked onchange="toggleGameVariant(GameVariant.SSP)"/>
+        <label for="gameVariant1">Stein, Schere, Papier</label><br/>
+        <input type="radio" id="gameVariant2" name="gameVariant" onchange="toggleGameVariant(GameVariant.SSPB)"/>
+        <label for="gameVariant2">Stein, Schere, Papier, Brunnen</label>
+      </form>
+    </div>
   </body>
   </html>
   
