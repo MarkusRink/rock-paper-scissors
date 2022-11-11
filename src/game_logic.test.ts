@@ -1,5 +1,4 @@
-import { runGame } from "./game_logic"
-// TODO import/export ENUM correctly
+import {GameSymbol, runGame} from "./game_logic"    
 
 test("check every combination for SSP", () => {
     document.body.innerHTML = 

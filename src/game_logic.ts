@@ -1,11 +1,10 @@
-
 export enum GameVariant {
   SSP,
   SSPB,
 };
 var currentGameVariant = GameVariant.SSP;
 var numberOfSymbols = 3;
-enum GameSymbol {
+export enum GameSymbol {
   Stein,
   Papier,
   Schere,
