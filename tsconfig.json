@@ -1,0 +1,14 @@
+{
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.*"],
+  "compilerOptions": {
+    "outDir": "./build",
+    "module": "CommonJS",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "target": "ES2015",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "noFallthroughCasesInSwitch": true,
+  }
+}

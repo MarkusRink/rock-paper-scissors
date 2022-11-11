@@ -1,0 +1,32 @@
+{
+  "name": "schere_stein_papier",
+  "version": "0.1.0",
+  "description": "",
+  "main": "./build/game_logic.js",
+  "scripts": {
+    "test": "jest",
+    "build": "cp ./src/*.html ./build && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkusRink/stone-paper-scissors.git"
+  },
+  "keywords": [
+    "game",
+    "stone",
+    "paper",
+    "scissors"
+  ],
+  "author": "Markus Rink",
+  "bugs": {
+    "url": "https://github.com/MarkusRink/stone-paper-scissors/issues"
+  },
+  "homepage": "https://github.com/MarkusRink/stone-paper-scissors#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^29.2.2",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "ts-jest": "^29.0.3"
+  }
+}

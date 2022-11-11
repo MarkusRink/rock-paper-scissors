@@ -74,4 +74,3 @@ function toggleGameVariant(variant) {
             break;
     }
 }
-exports.default = GameSymbol;
