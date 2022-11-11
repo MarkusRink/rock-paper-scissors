@@ -3,3 +3,4 @@ src/**/*.js
 *.pdf
 
 !build/*
+!src/**/*.test.js
