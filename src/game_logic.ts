@@ -1,10 +1,10 @@
-export enum GameVariant {
+enum GameVariant {
   SSP,
   SSPB,
 };
 var currentGameVariant = GameVariant.SSP;
 var numberOfSymbols = 3;
-export enum GameSymbol {
+enum GameSymbol {
   Stein,
   Papier,
   Schere,
@@ -44,7 +44,7 @@ addEventListener('DOMContentLoaded', () => {
  * @param symbol 
  * @param computerSymbol if not set a random GameSymbol, usefull for debugging
  */
-export function runGame(symbol: GameSymbol, computerSymbol: GameSymbol = null): void {
+function runGame(symbol: GameSymbol, computerSymbol: GameSymbol = null): void {
   if (displayComputerSymbol != undefined || displayGameState != undefined || btnBrunnen != undefined) {
     if (computerSymbol === null){
       computerSymbol = getRandomInt(0, numberOfSymbols);
@@ -67,19 +67,6 @@ export function runGame(symbol: GameSymbol, computerSymbol: GameSymbol = null): 
     // TODO Set computer Symbol
     displayComputerSymbol.innerText = "Computer wählt: " + String(GameSymbol[computerSymbol]);    
   }
-}
-
-/**
- * @returns true if given value is equal (===) to a string in the array. 
- * Returns false in any other case.
- */
-function arrayIncludes(arr:string[], value:string): Boolean{
-  arr.forEach(val => {
-    if (val === value){
-      return true;
-    }
-  });
-  return false;
 }
 
 /**

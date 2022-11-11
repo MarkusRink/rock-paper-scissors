@@ -3,7 +3,6 @@
   "exclude": ["src/**/*.test.*"],
   "compilerOptions": {
     "outDir": "./build",
-    "module": "CommonJS",
     "noImplicitAny": true,
     "removeComments": true,
     "target": "ES2015",

@@ -1,11 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.runGame = exports.GameVariant = void 0;
 var GameVariant;
 (function (GameVariant) {
     GameVariant[GameVariant["SSP"] = 0] = "SSP";
     GameVariant[GameVariant["SSPB"] = 1] = "SSPB";
-})(GameVariant = exports.GameVariant || (exports.GameVariant = {}));
+})(GameVariant || (GameVariant = {}));
 ;
 var currentGameVariant = GameVariant.SSP;
 var numberOfSymbols = 3;
@@ -45,15 +42,6 @@ function runGame(symbol, computerSymbol = null) {
         }
         displayComputerSymbol.innerText = "Computer wählt: " + String(GameSymbol[computerSymbol]);
     }
-}
-exports.runGame = runGame;
-function arrayIncludes(arr, value) {
-    arr.forEach(val => {
-        if (val === value) {
-            return true;
-        }
-    });
-    return false;
 }
 function getRandomInt(min, max) {
     min = Math.ceil(min);
