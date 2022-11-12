@@ -1,3 +1,5 @@
+import {calculateWinner, GameSymbol, GameWinner} from "./game_logic";
+
 test("check every combination for SSP", () => {
     expect(calculateWinner(GameSymbol.Stein, GameSymbol.Stein)).toBe(GameWinner.Nobody);
     expect(calculateWinner(GameSymbol.Stein, GameSymbol.Papier)).toBe(GameWinner.Computer);

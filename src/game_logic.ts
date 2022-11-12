@@ -1,3 +1,6 @@
+import './styles.css';
+
+
 enum GameVariant {
   SSP,
   SSPB,
@@ -126,3 +129,6 @@ function toggleGameVariant(variant:GameVariant){
       break
   }
 }
+
+export {GameVariant, GameSymbol, GameWinner};
+export {calculateWinner};
