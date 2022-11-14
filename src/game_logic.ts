@@ -31,16 +31,18 @@ addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Entry point for the game.
- * @param symbol Symbol of the player
+ * Entry point for the game. Local HTML elements must be set by DOMContentLoad event.
+ * @param playerSymbol Symbol of the player
  * @param computerSymbol Symbol of the computer, random by default
  */
 function runGame(playerSymbol: GameSymbol, computerSymbol: GameSymbol = null): void {
-  if (displayGameState != undefined || btnBrunnen != undefined) {
+  if (displayGameState != undefined && btnBrunnen != undefined) {
     if (computerSymbol === null) {
       computerSymbol = getRandomInt(0, numberOfSymbols);
     }
     displayGameOutcome(calculateWinner(playerSymbol, computerSymbol), playerSymbol, computerSymbol);
+  } else {
+    throw new Error("HTML elements not available, can't handle UI.")
   }
 }
 
