@@ -1,6 +1,3 @@
-import './styles.css';
-
-
 enum GameVariant {
   SSP,
   SSPB,
@@ -100,7 +97,8 @@ function calculateWinner(symbol: GameSymbol, computerSymbol: GameSymbol): GameWi
 }
 
 /**
- * Implementation from mdn doccs.
+ * Implementation from mdn docs.
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
  * @param min inclusive minimum value
  * @param max exclusive maximum value
  * @returns a random integer.

@@ -3,7 +3,7 @@ import type { Config } from "@jest/types"
 
 const config: Config.InitialOptions = {
   preset: "ts-jest",
-  testEnvironment: "node",
+  testEnvironment: "jsdom",
   verbose: true,
 }
 export default config

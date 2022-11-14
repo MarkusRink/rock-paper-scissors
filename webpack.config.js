@@ -6,6 +6,7 @@ module.exports = {
     output: {
         filename: 'game_logic.js',
         path: path.resolve(__dirname, 'dist'),
+        publicPath: '/dist/'
     },
     devtool: 'inline-source-map',
     // Code from ts-loader documentation
@@ -25,12 +26,11 @@ module.exports = {
             {
                 test: /\.([cm]?ts|tsx)$/,
                 loader: "ts-loader",
-                exclude: /node_modules/,
+                include: [path.resolve(__dirname, 'src')]
             },
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
-
             },
         ]
     }
