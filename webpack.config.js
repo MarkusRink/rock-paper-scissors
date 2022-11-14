@@ -1,8 +1,9 @@
 const path = require('path');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: './src/game_logic.ts',
-    mode: 'development',
+    mode: 'development', //TODO change to production later
     output: {
         filename: 'game_logic.js',
         path: path.resolve(__dirname, 'dist'),
@@ -29,10 +30,14 @@ module.exports = {
                 loader: "ts-loader",
                 include: [path.resolve(__dirname, 'src')]
             },
-            {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
-            },
         ]
-    }
+    },
+    plugins: [
+        new CopyPlugin({
+            patterns: [
+                {from: "*.css", context: "src/"},
+                {from: "*.html", context: "src/"}
+            ]
+        }),
+    ]
 };
