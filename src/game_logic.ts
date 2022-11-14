@@ -129,4 +129,4 @@ function toggleGameVariant(variant:GameVariant){
 }
 
 export {GameVariant, GameSymbol, GameWinner};
-export {calculateWinner};
+export {calculateWinner, runGame};

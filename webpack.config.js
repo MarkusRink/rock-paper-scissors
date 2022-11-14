@@ -6,7 +6,8 @@ module.exports = {
     output: {
         filename: 'game_logic.js',
         path: path.resolve(__dirname, 'dist'),
-        publicPath: '/dist/'
+        publicPath: '/dist/',
+        library: 'Game'
     },
     devtool: 'inline-source-map',
     // Code from ts-loader documentation
