@@ -3,7 +3,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: './src/game_logic.ts',
-    mode: 'development', //TODO change to production later
+    mode: 'production',
     output: {
         filename: 'game_logic.js',
         path: path.resolve(__dirname, 'dist'),
