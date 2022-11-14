@@ -128,5 +128,6 @@ function toggleGameVariant(variant:GameVariant){
   }
 }
 
+//? Is it possible to export functions, e.g. calculateWinner(), only for testing and not production?
 export {GameVariant, GameSymbol, GameWinner};
-export {calculateWinner, runGame};
+export {calculateWinner, runGame, toggleGameVariant};
