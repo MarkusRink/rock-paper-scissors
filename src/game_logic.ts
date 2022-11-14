@@ -24,11 +24,9 @@ const leftWins = [
 
 // -- HTML elements --
 let displayGameState: HTMLElement;
-let displayComputerSymbol: HTMLElement;
 let btnBrunnen: HTMLElement;
 addEventListener('DOMContentLoaded', () => {
   displayGameState = document.getElementById("displayGameState");
-  displayComputerSymbol = document.getElementById("displayComputerSymbol");
   btnBrunnen = document.getElementById("btnBrunnen"); // maybe rename
 });
 
@@ -38,7 +36,7 @@ addEventListener('DOMContentLoaded', () => {
  * @param computerSymbol Symbol of the computer, random by default
  */
 function runGame(playerSymbol: GameSymbol, computerSymbol: GameSymbol = null): void {
-  if (displayComputerSymbol != undefined || displayGameState != undefined || btnBrunnen != undefined) {
+  if (displayGameState != undefined || btnBrunnen != undefined) {
     if (computerSymbol === null) {
       computerSymbol = getRandomInt(0, numberOfSymbols);
     }
