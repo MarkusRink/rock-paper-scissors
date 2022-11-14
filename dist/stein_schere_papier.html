@@ -22,18 +22,18 @@
       <p id="displayComputerSymbol" style="display: none;"></p>
       <p id="displayGameState"></p>
       <div class="buttonBox">
-        <button onclick="runGame(GameSymbol.Stein)">🪨 Stein</button>
-        <button onclick="runGame(GameSymbol.Papier)">📄 Papier</button>
-        <button id="btnBrunnen" onclick="runGame(GameSymbol.Brunnen)" style="display: none;">⛲ Brunnen</button>
-        <button onclick="runGame(GameSymbol.Schere)">✂️ Schere</button>
+        <button onclick="window.Game.runGame(window.Game.GameSymbol.Stein)">🪨 Stein</button>
+        <button onclick="window.Game.runGame(window.Game.GameSymbol.Papier)">📄 Papier</button>
+        <button id="btnBrunnen" onclick="window.Game.runGame(window.Game.GameSymbol.Brunnen)" style="display: none;">⛲ Brunnen</button>
+        <button onclick="window.Game.runGame(window.Game.GameSymbol.Schere)">✂️ Schere</button>
       </div>
         
       <span class="divider"></span>
       <form>
         <label><i>Hier kannst du die Spielvariante wechseln:</i></label><br/>
-        <input type="radio" id="gameVariant1" name="gameVariant" checked onchange="toggleGameVariant(GameVariant.SSP)"/>
+        <input type="radio" id="gameVariant1" name="gameVariant" checked onchange="window.Game.toggleGameVariant(window.Game.GameVariant.SSP)"/>
         <label for="gameVariant1">Stein, Schere, Papier</label><br/>
-        <input type="radio" id="gameVariant2" name="gameVariant" onchange="toggleGameVariant(GameVariant.SSPB)"/>
+        <input type="radio" id="gameVariant2" name="gameVariant" onchange="window.Game.toggleGameVariant(window.Game.GameVariant.SSPB)"/>
         <label for="gameVariant2">Stein, Schere, Papier, Brunnen</label>
       </form>
     </div>
