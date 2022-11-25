@@ -23,45 +23,8 @@ export default defineComponent({
             playerSymbol: null as GameSymbol | null,
             computerSymbol: null as GameSymbol | null,
             displayText: "",
-            displayClass: ""
-        }
-    },
-    computed: {
-        winner() {
-            if (this.computerSymbol != null && this.playerSymbol != null
-            ) {
-                if (this.playerSymbol === this.computerSymbol) {
-                    return GameWinner.Nobody
-                }
-                else if (leftWins.includes(String(this.playerSymbol) + String(this.computerSymbol))) {
-                    return GameWinner.Player
-                }
-                else {
-                    return GameWinner.Computer
-                }
-            } else {
-                return null
-            }
-        }
-    },
-    watch: {
-        winner(newWinner) {
-            if (this.playerSymbol != null && this.computerSymbol != null && this.winner != null) {
-                switch (this.winner) {
-                    case GameWinner.Computer:
-                        this.displayText = String(GameSymbol[this.playerSymbol]) + " verliert gegen " + String(GameSymbol[this.computerSymbol])
-                        this.displayClass = "display-lose"
-                        break
-                    case GameWinner.Player:
-                        this.displayText = String(GameSymbol[this.playerSymbol]) + " gewinnt gegen " + String(GameSymbol[this.computerSymbol])
-                        this.displayClass = "display-win"
-                        break
-                    case GameWinner.Nobody:
-                        this.displayText = "unentschieden mit " + String(GameSymbol[this.playerSymbol])
-                        this.displayClass = "display-stalemate"
-                        break
-                }
-            }
+            displayClass: "",
+            winner: GameWinner.Nobody
         }
     },
     methods: {
@@ -84,6 +47,22 @@ export default defineComponent({
                 computerSymbol = this.getRandomInt(0, this.gameVariant)
             }
             this.computerSymbol = computerSymbol
+
+            if (this.playerSymbol === this.computerSymbol) {
+                this.displayText = "unentschieden mit " + String(GameSymbol[this.playerSymbol])
+                this.displayClass = "display-stalemate"
+                this.winner = GameWinner.Nobody
+            }
+            else if (leftWins.includes(String(this.playerSymbol) + String(this.computerSymbol))) {
+                this.displayText = String(GameSymbol[this.playerSymbol]) + " gewinnt gegen " + String(GameSymbol[this.computerSymbol])
+                this.displayClass = "display-win"
+                this.winner = GameWinner.Player
+            }
+            else {
+                this.displayText = String(GameSymbol[this.playerSymbol]) + " verliert gegen " + String(GameSymbol[this.computerSymbol])
+                this.displayClass = "display-lose"
+                this.winner = GameWinner.Computer
+            }
         },
     }
 })

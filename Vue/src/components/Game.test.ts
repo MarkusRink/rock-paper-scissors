@@ -5,148 +5,92 @@ import { GameSymbol, GameVariant, GameWinner } from "./GameElements"
 
 describe("test Game component", () => {
     test("check every combination for SSP", async () => {
-        expect(Game).toBeTruthy()
+        const wrapper = mount(Game)
 
-        const wrapper = mount(Game, {
-            props: {gameVariant: GameVariant.SSP}
-        })
+        wrapper.vm.runGame(GameSymbol.Stein, GameSymbol.Stein)
+        await new Promise(r => setTimeout(r))
+        expect(wrapper.vm.winner).toBe(GameWinner.Nobody)
+        wrapper.vm.runGame(GameSymbol.Stein, GameSymbol.Schere)
+        await new Promise(r => setTimeout(r))
+        expect(wrapper.vm.winner).toBe(GameWinner.Player)
+        wrapper.vm.runGame(GameSymbol.Stein, GameSymbol.Papier)
+        await new Promise(r => setTimeout(r))
+        expect(wrapper.vm.winner).toBe(GameWinner.Computer)
 
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Stein,
-            computerSymbol: GameSymbol.Stein
-        })
+        wrapper.vm.runGame(GameSymbol.Schere, GameSymbol.Stein)
+        await new Promise(r => setTimeout(r))
+        expect(wrapper.vm.winner).toBe(GameWinner.Computer)
+        wrapper.vm.runGame(GameSymbol.Schere, GameSymbol.Schere)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Nobody)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Stein,
-            computerSymbol: GameSymbol.Schere
-        })
+        wrapper.vm.runGame(GameSymbol.Schere, GameSymbol.Papier)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Player)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Stein,
-            computerSymbol: GameSymbol.Papier
-        })
-        expect(wrapper.vm.winner).toBe(GameWinner.Computer)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Schere,
-            computerSymbol: GameSymbol.Stein
-        })
-        expect(wrapper.vm.winner).toBe(GameWinner.Computer)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Schere,
-            computerSymbol: GameSymbol.Schere
-        })
+
+        wrapper.vm.runGame(GameSymbol.Papier, GameSymbol.Papier)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Nobody)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Schere,
-            computerSymbol: GameSymbol.Papier
-        })
-        expect(wrapper.vm.winner).toBe(GameWinner.Player)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Papier,
-            computerSymbol: GameSymbol.Papier
-        })
-        expect(wrapper.vm.winner).toBe(GameWinner.Nobody)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Papier,
-            computerSymbol: GameSymbol.Schere
-        })
+        wrapper.vm.runGame(GameSymbol.Papier, GameSymbol.Schere)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Computer)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Papier,
-            computerSymbol: GameSymbol.Stein
-        })
+        wrapper.vm.runGame(GameSymbol.Papier, GameSymbol.Stein)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Player)
     })
 
     test("check every combination for SSPB", async () => {
-        expect(Game).toBeTruthy()
-        const wrapper = mount(Game, {
-            props: {gameVariant: GameVariant.SSP}
-        })
+        const wrapper = mount(Game)
 
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Stein,
-            computerSymbol: GameSymbol.Stein
-        })
+        wrapper.vm.runGame(GameSymbol.Stein, GameSymbol.Stein)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Nobody)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Stein,
-            computerSymbol: GameSymbol.Schere
-        })
+        wrapper.vm.runGame(GameSymbol.Stein, GameSymbol.Schere)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Player)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Stein,
-            computerSymbol: GameSymbol.Papier
-        })
+        wrapper.vm.runGame(GameSymbol.Stein, GameSymbol.Papier)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Computer)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Stein,
-            computerSymbol: GameSymbol.Brunnen
-        })
+        wrapper.vm.runGame(GameSymbol.Stein, GameSymbol.Brunnen)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Computer)
 
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Schere,
-            computerSymbol: GameSymbol.Stein
-        })
+        wrapper.vm.runGame(GameSymbol.Schere, GameSymbol.Stein)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Computer)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Schere,
-            computerSymbol: GameSymbol.Schere
-        })
+        wrapper.vm.runGame(GameSymbol.Schere, GameSymbol.Schere)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Nobody)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Schere,
-            computerSymbol: GameSymbol.Papier
-        })
+        wrapper.vm.runGame(GameSymbol.Schere, GameSymbol.Papier)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Player)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Schere,
-            computerSymbol: GameSymbol.Brunnen
-        })
+        wrapper.vm.runGame(GameSymbol.Schere, GameSymbol.Brunnen)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Computer)
-        
 
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Papier,
-            computerSymbol: GameSymbol.Papier
-        })
+        wrapper.vm.runGame(GameSymbol.Papier, GameSymbol.Papier)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Nobody)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Papier,
-            computerSymbol: GameSymbol.Schere
-        })
+        wrapper.vm.runGame(GameSymbol.Papier, GameSymbol.Schere)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Computer)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Papier,
-            computerSymbol: GameSymbol.Stein
-        })
+        wrapper.vm.runGame(GameSymbol.Papier, GameSymbol.Stein)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Player)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Papier,
-            computerSymbol: GameSymbol.Brunnen
-        })
+        wrapper.vm.runGame(GameSymbol.Papier, GameSymbol.Brunnen)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Player)
-        
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Brunnen,
-            computerSymbol: GameSymbol.Stein
-        })
+
+        wrapper.vm.runGame(GameSymbol.Brunnen, GameSymbol.Stein)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Player)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Brunnen,
-            computerSymbol: GameSymbol.Schere
-        })
+        wrapper.vm.runGame(GameSymbol.Brunnen, GameSymbol.Schere)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Player)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Brunnen,
-            computerSymbol: GameSymbol.Papier
-        })
+        wrapper.vm.runGame(GameSymbol.Brunnen, GameSymbol.Papier)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Computer)
-        await wrapper.setData({
-            playerSymbol: GameSymbol.Brunnen,
-            computerSymbol: GameSymbol.Brunnen
-        })
+        wrapper.vm.runGame(GameSymbol.Brunnen, GameSymbol.Brunnen)
+        await new Promise(r => setTimeout(r))
         expect(wrapper.vm.winner).toBe(GameWinner.Nobody)
     })
 
@@ -154,13 +98,10 @@ describe("test Game component", () => {
         const wrapper = mount(Game)
         
         await wrapper.get('#btn-stein').trigger('click')
-        await new Promise(r => setTimeout(r)) // wait for effect, src: https://stackoverflow.com/questions/67674794/testing-vue-watchers-with-vue-testing-library
         expect(wrapper.get('[data-test="text"]').text()).contain("Stein")        
         await wrapper.get('#btn-papier').trigger('click')
-        await new Promise(r => setTimeout(r))
         expect(wrapper.get('[data-test="text"]').text()).contain("Papier")
         await wrapper.get('#btn-schere').trigger('click')
-        await new Promise(r => setTimeout(r))
         expect(wrapper.get('[data-test="text"]').text()).contain("Schere")
 
         expect(wrapper.find('#btn-brunnen').exists()).toBe(false)
@@ -169,7 +110,6 @@ describe("test Game component", () => {
 
         
         await wrapper.get('#btn-brunnen').trigger('click')
-        await new Promise(r => setTimeout(r))
         expect(wrapper.get('[data-test="text"]').text()).contain("Brunnen")
 
         await wrapper.get('#gameVariant1').trigger('change')
