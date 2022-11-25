@@ -1,5 +1,5 @@
 {
-  "name": "schere_stein_papier",
+  "name": "holisticon-schere-stein-papier",
   "main": "src/game_logic.ts",
   "private": true,
   "scripts": {
