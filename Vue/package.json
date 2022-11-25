@@ -8,7 +8,8 @@
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "quickstart": "npm install && npm run build && npm run preview"
   },
   "dependencies": {
     "vue": "^3.2.41"

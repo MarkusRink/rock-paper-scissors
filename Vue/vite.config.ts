@@ -7,5 +7,8 @@ export default defineConfig({
   plugins: [vue()],
   test: {
     environment: 'jsdom'
+  },
+  build: {
+    target: 'es6'
   }
 })
