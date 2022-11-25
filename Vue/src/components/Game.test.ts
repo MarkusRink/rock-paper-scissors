@@ -151,15 +151,16 @@ describe("test Game component", () => {
     })
 
     test("press all buttons", async () => {
-        const wrapper = mount(Game, {
-            props: {gameVariant: GameVariant.SSP}
-        })
+        const wrapper = mount(Game)
         
         await wrapper.get('#btn-stein').trigger('click')
+        await new Promise(r => setTimeout(r)) // wait for effect, src: https://stackoverflow.com/questions/67674794/testing-vue-watchers-with-vue-testing-library
         expect(wrapper.get('[data-test="text"]').text()).contain("Stein")        
         await wrapper.get('#btn-papier').trigger('click')
+        await new Promise(r => setTimeout(r))
         expect(wrapper.get('[data-test="text"]').text()).contain("Papier")
         await wrapper.get('#btn-schere').trigger('click')
+        await new Promise(r => setTimeout(r))
         expect(wrapper.get('[data-test="text"]').text()).contain("Schere")
 
         expect(wrapper.find('#btn-brunnen').exists()).toBe(false)
@@ -168,6 +169,7 @@ describe("test Game component", () => {
 
         
         await wrapper.get('#btn-brunnen').trigger('click')
+        await new Promise(r => setTimeout(r))
         expect(wrapper.get('[data-test="text"]').text()).contain("Brunnen")
 
         await wrapper.get('#gameVariant1').trigger('change')

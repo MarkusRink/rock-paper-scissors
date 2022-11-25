@@ -22,10 +22,9 @@ export default defineComponent({
             gameVariant: GameVariant.SSP,
             playerSymbol: null as GameSymbol | null,
             computerSymbol: null as GameSymbol | null,
+            displayText: "",
+            displayClass: ""
         }
-    },
-    props: {
-        gameVariant: { Number, default: GameVariant.SSP, }
     },
     computed: {
         winner() {
@@ -42,6 +41,26 @@ export default defineComponent({
                 }
             } else {
                 return null
+            }
+        }
+    },
+    watch: {
+        winner(newWinner) {
+            if (this.playerSymbol != null && this.computerSymbol != null && this.winner != null) {
+                switch (this.winner) {
+                    case GameWinner.Computer:
+                        this.displayText = String(GameSymbol[this.playerSymbol]) + " verliert gegen " + String(GameSymbol[this.computerSymbol])
+                        this.displayClass = "display-lose"
+                        break
+                    case GameWinner.Player:
+                        this.displayText = String(GameSymbol[this.playerSymbol]) + " gewinnt gegen " + String(GameSymbol[this.computerSymbol])
+                        this.displayClass = "display-win"
+                        break
+                    case GameWinner.Nobody:
+                        this.displayText = "unentschieden mit " + String(GameSymbol[this.playerSymbol])
+                        this.displayClass = "display-stalemate"
+                        break
+                }
             }
         }
     },
@@ -77,21 +96,10 @@ export default defineComponent({
             <i>Kannst du den Computer in Stein, Schere, Papier schlagen? <br /> Starte eine
                 neue Runde, indem du auf eines der Symbole klickst.</i>
         </p>
-        <div v-if="winner === GameWinner.Nobody && playerSymbol != null" class="display-stalemate" data-test="text">
-            unentschieden mit
-            {{ String(GameSymbol[playerSymbol]) }}</div>
-        <div class="display-win"
-            v-else-if="winner === GameWinner.Player && playerSymbol != null && computerSymbol != null" data-test="text">
-            {{ String(GameSymbol[playerSymbol])
-                    + " gewinnt gegen "
-                    + String(GameSymbol[computerSymbol])
-            }}</div>
-        <div v-else-if="winner === GameWinner.Computer && playerSymbol != null && computerSymbol != null"
-            class="display-lose" data-test="text">
-            {{ String(GameSymbol[playerSymbol])
-                    + " verliert gegen "
-                    + String(GameSymbol[computerSymbol])
-            }}</div>
+        <div class="display" :class="[displayClass]" data-test="text">
+            {{ displayText }}
+        </div>
+
         <div class="button-box">
             <button id="btn-schere" @click="runGame(GameSymbol.Schere)">✂️ Schere</button>
             <button id="btn-stein" @click="runGame(GameSymbol.Stein)">🪨 Stein</button>
@@ -125,12 +133,13 @@ export default defineComponent({
             display: flex
             flex-wrap: nowrap
             justify-content: space-between
-
+            
         button
             font-size: large
             padding: 1rem
             margin: 5px
             width: 100%
+            
         
             &:first-child
                 margin-left: 0
@@ -138,15 +147,19 @@ export default defineComponent({
             &:last-child
                 margin-right: 0
 
-    .display-lose, .display-stalemate, .display-win
+    .display
+        max-height: 0px
+        transition: max-height 0.5s cubic-bezier(.19,1,.22,1), background 0.5s cubic-bezier(.19,1,.22,1)
         text-align: center
-        margin: 0
-        border-radius: 5px
-        padding: 1rem
-        min-height: 1rem
         font-family: monospace
         font-size: x-large
-
+        border-radius: 5px
+        overflow: hidden
+    
+    .display-lose, .display-stalemate, .display-win
+        padding: 1rem
+        margin: 5px 0
+        max-height: 2rem
 
     .display-lose
         background: #E64C4C // red
