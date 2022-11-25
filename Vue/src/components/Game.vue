@@ -1,36 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-
-enum GameSymbol {
-    Schere,
-    Stein,
-    Papier,
-    Brunnen
-}
-
-enum GameVariant {
-    SSP = 3,
-    SSPB = 4
-}
-
-enum GameWinner {
-    Player,
-    Computer,
-    Nobody
-}
-
-interface GameStateInit {
-    gameVariant: GameVariant
-}
-
-interface GameStateRunning {
-    gameVariant: GameVariant,
-    playerSymbol: GameSymbol,
-    computerSymbol: GameSymbol,
-    winner: GameWinner, // can be computed from clculateWinner(playerSymbol, ComputerSymbol)
-}
-
-type GameState = GameStateInit | GameStateRunning
+import {GameSymbol, GameVariant, GameWinner} from './GameElements'
 
 
 /** Hardcode every combination, where the left symbol wins. */
@@ -42,9 +12,6 @@ const leftWins = [
     String(GameSymbol.Brunnen) + String(GameSymbol.Stein),
     String(GameSymbol.Brunnen) + String(GameSymbol.Schere),
 ]
-
-// TODO maybe init with random values to reduce checking for null
-const initialComputerSymbol: GameSymbol = Math.floor(Math.random() * 3)
 
 export default defineComponent({
     data() {
@@ -125,10 +92,10 @@ export default defineComponent({
                     + String(GameSymbol[computerSymbol])
             }}</div>
         <div class="button-box">
-            <button @click="runGame(GameSymbol.Schere)">✂️ Schere</button>
-            <button @click="runGame(GameSymbol.Stein)">🪨 Stein</button>
-            <button @click="runGame(GameSymbol.Papier)">📄 Papier</button>
-            <button v-if="gameVariant === GameVariant.SSPB" @click="runGame(GameSymbol.Brunnen)">⛲ Brunnen</button>
+            <button id="btn-schere" @click="runGame(GameSymbol.Schere)">✂️ Schere</button>
+            <button id="btn-stein" @click="runGame(GameSymbol.Stein)">🪨 Stein</button>
+            <button id="btn-papier" @click="runGame(GameSymbol.Papier)">📄 Papier</button>
+            <button id="btn-brunnen" v-if="gameVariant === GameVariant.SSPB" @click="runGame(GameSymbol.Brunnen)">⛲ Brunnen</button>
         </div>
 
         <span class="divider"></span>
