@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import Game from "./Game.vue"
 import { GameSymbol, GameVariant, GameWinner } from "./GameElements"
 
-describe("test logic", () => {
+describe("test Game component", () => {
     test("check every combination for SSP", async () => {
         expect(Game).toBeTruthy()
 
@@ -150,18 +150,27 @@ describe("test logic", () => {
         expect(wrapper.vm.winner).toBe(GameWinner.Nobody)
     })
 
-    test("check random games", () => {
-        expect(Game).toBeTruthy()
-
+    test("press all buttons", async () => {
         const wrapper = mount(Game, {
-            props: {gameVariant: GameVariant.SSPB}
+            props: {gameVariant: GameVariant.SSP}
         })
-        wrapper.find('#btn-stein').trigger('click')
-        wrapper.find('#btn-papier').trigger('click')
-        wrapper.find('#btn-schere').trigger('click')
-        //wrapper.find('#btn-brunnen').trigger('click')
-        //TODO expect a change of playerSymbol and possible UI update
+        
+        await wrapper.get('#btn-stein').trigger('click')
+        expect(wrapper.get('[data-test="text"]').text()).contain("Stein")        
+        await wrapper.get('#btn-papier').trigger('click')
+        expect(wrapper.get('[data-test="text"]').text()).contain("Papier")
+        await wrapper.get('#btn-schere').trigger('click')
+        expect(wrapper.get('[data-test="text"]').text()).contain("Schere")
+
+        expect(wrapper.find('#btn-brunnen').exists()).toBe(false)
+        await wrapper.get('#gameVariant2').trigger('change')
+        expect(wrapper.find('#btn-brunnen').exists()).toBe(true)
+
+        
+        await wrapper.get('#btn-brunnen').trigger('click')
+        expect(wrapper.get('[data-test="text"]').text()).contain("Brunnen")
+
+        await wrapper.get('#gameVariant1').trigger('change')
+        expect(wrapper.find('#btn-brunnen').exists()).toBe(false)
     })
 })
-
-//TODO test UI

@@ -11,3 +11,4 @@ Overview of defined and usefull commands:
 - `npm run dev` run vite dev server
 - `npm run build` run bundler
 - `npm test` runs tests with vitest
+- `npm run coverage` generates vitest coverage report

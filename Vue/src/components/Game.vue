@@ -1,6 +1,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
-import {GameSymbol, GameVariant, GameWinner} from './GameElements'
+import { GameSymbol, GameVariant, GameWinner } from './GameElements'
 
 
 /** Hardcode every combination, where the left symbol wins. */
@@ -77,16 +77,17 @@ export default defineComponent({
             <i>Kannst du den Computer in Stein, Schere, Papier schlagen? <br /> Starte eine
                 neue Runde, indem du auf eines der Symbole klickst.</i>
         </p>
-        <div class="display-stalemate" v-if="winner === GameWinner.Nobody && playerSymbol != null">unentschieden mit
+        <div v-if="winner === GameWinner.Nobody && playerSymbol != null" class="display-stalemate" data-test="text">
+            unentschieden mit
             {{ String(GameSymbol[playerSymbol]) }}</div>
         <div class="display-win"
-            v-else-if="winner === GameWinner.Player && playerSymbol != null && computerSymbol != null">
+            v-else-if="winner === GameWinner.Player && playerSymbol != null && computerSymbol != null" data-test="text">
             {{ String(GameSymbol[playerSymbol])
                     + " gewinnt gegen "
                     + String(GameSymbol[computerSymbol])
             }}</div>
-        <div class="display-lose"
-            v-else-if="winner === GameWinner.Computer && playerSymbol != null && computerSymbol != null">
+        <div v-else-if="winner === GameWinner.Computer && playerSymbol != null && computerSymbol != null"
+            class="display-lose" data-test="text">
             {{ String(GameSymbol[playerSymbol])
                     + " verliert gegen "
                     + String(GameSymbol[computerSymbol])
@@ -95,7 +96,8 @@ export default defineComponent({
             <button id="btn-schere" @click="runGame(GameSymbol.Schere)">✂️ Schere</button>
             <button id="btn-stein" @click="runGame(GameSymbol.Stein)">🪨 Stein</button>
             <button id="btn-papier" @click="runGame(GameSymbol.Papier)">📄 Papier</button>
-            <button id="btn-brunnen" v-if="gameVariant === GameVariant.SSPB" @click="runGame(GameSymbol.Brunnen)">⛲ Brunnen</button>
+            <button id="btn-brunnen" v-if="gameVariant === GameVariant.SSPB" @click="runGame(GameSymbol.Brunnen)">⛲
+                Brunnen</button>
         </div>
 
         <span class="divider"></span>
